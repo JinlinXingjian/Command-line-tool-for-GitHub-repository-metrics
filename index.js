@@ -2,9 +2,9 @@ const axios = require('axios');
 const { DateTime } = require('luxon');
 
 async function getRepositoryInfo(repo) {
-  const token = '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';
-  const headers = { 'Authorization': `Token ${token}` };
   const url = `https://api.github.com/repos/${repo}`;
+  headers={};
+
   console.log('开始请求', repo, '仓库的数据...');
 
   try {
@@ -17,8 +17,8 @@ async function getRepositoryInfo(repo) {
         name: data.name,
         html_url: data.html_url,
         stargazers_count: data.stargazers_count,
-        created_at: data.created_at,
-        updated_at: data.updated_at
+        created_at: DateTime.fromISO(data.created_at).toLocaleString(DateTime.DATETIME_SHORT),
+        updated_at: DateTime.fromISO(data.updated_at).toLocaleString(DateTime.DATETIME_SHORT)
       };
     } else {
       return null;
@@ -30,9 +30,8 @@ async function getRepositoryInfo(repo) {
 }
 
 async function getCommitCount(repo, year, month) {
-  const token = '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';
-  const headers = { 'Authorization': `Token ${token}` };
   const base_url = `https://api.github.com/repos/${repo}/commits`;
+  const headers={};
   const since = `${year}-${month.toString().padStart(2, '0')}-01T00:00:00Z`;
   const until = `${year}-${month.toString().padStart(2, '0')}-31T23:59:59Z`;
   const params = {
