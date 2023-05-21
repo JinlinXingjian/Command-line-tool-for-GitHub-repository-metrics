@@ -1,0 +1,19 @@
+{
+  "name": "poshangfeng",
+  "version": "1.0.0",
+  "description": "获取GitHub指标数据的命令行工具",
+  "main": "index.js",
+  "scripts": {
+    "psf": "node index.js"
+  },
+  "keywords": [
+    "GItHub",
+    "指标"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "luxon": "^3.3.0"
+  }
+}
